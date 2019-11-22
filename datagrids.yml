@@ -1,0 +1,65 @@
+datagrids:
+    user_roles:
+        options:
+            entity_pagination: true
+            toolbarOptions:
+                pageSize:
+                    items: [30, 60, 90]
+                    default_per_page: 30
+        source:
+            type: orm
+            query:
+                select:
+                    - l.username as name
+                    - r.name as role
+                from:
+                    - { table: 'Acme\User\Entity\User', alias: l }
+                join:
+                    left:
+                        - { join: l.roles, alias: r }
+                where:
+                    and:
+                        - r.name = :role_id
+            bind_parameters:
+                - role_id
+        columns:
+            name:
+                label: noinc.role.name.label
+                data_name: name
+            role:
+                label: noinc.role.name.label
+                data_name: role
+        sorters:
+            columns:
+                name:
+                    data_name: name
+        filters:
+            columns:
+                name:
+                    type: string
+                    label: noinc.role.name.label
+                    data_name: name
+
+
+    test:
+        source:
+            type: orm
+            query:
+                select:
+                    - l.name as name
+                from:
+                    - { table: 'Acme\User\Entity\Role', alias: l }
+        columns:
+            name:
+                label: noinc.role.name.label
+                data_name: name
+        sorters:
+            columns:
+                name:
+                    data_name: name
+        filters:
+            columns:
+                name:
+                    type: string
+                    label: noinc.role.name.label
+                    data_name: name

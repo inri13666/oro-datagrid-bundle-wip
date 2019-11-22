@@ -1,0 +1,16 @@
+{
+  "role_id": "ROLE_STAFF",
+  "_pager": {
+    "_page": 1,
+    "_per_page": 10
+  },
+  "_sort_by": {
+    "name": "DESC"
+  },
+  "_filter": {
+    "name": {
+      "type": 2,
+      "value": "ROLE_STAFF"
+    }
+  }
+}
